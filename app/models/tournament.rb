@@ -1,3 +1,4 @@
 class Tournament < ApplicationRecord
-  validates_presence_of :name, :format
+  validates :name, presence: true 
+  validates :format, presence: true
 end
