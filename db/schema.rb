@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_10_200349) do
+ActiveRecord::Schema.define(version: 2018_07_10_210605) do
+
+  create_table "leagues", force: :cascade do |t|
+    t.integer "number_of_groups", default: 1
+    t.integer "tournament_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tournament_id"], name: "index_leagues_on_tournament_id"
+  end
 
   create_table "participants", force: :cascade do |t|
     t.string "name", null: false
