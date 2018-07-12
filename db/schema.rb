@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_10_211730) do
+ActiveRecord::Schema.define(version: 2018_07_12_151534) do
 
   create_table "groups", force: :cascade do |t|
     t.integer "league_id"
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(version: 2018_07_10_211730) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_ladder_positions_on_group_id"
     t.index ["participant_id"], name: "index_ladder_positions_on_participant_id"
+  end
+
+  create_table "league_matches", force: :cascade do |t|
+    t.integer "winner"
+    t.integer "round"
+    t.integer "group_id"
+    t.integer "participant1_id"
+    t.integer "participant2_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_league_matches_on_group_id"
+    t.index ["participant1_id"], name: "index_league_matches_on_participant1_id"
+    t.index ["participant2_id"], name: "index_league_matches_on_participant2_id"
+    t.index ["winner"], name: "index_league_matches_on_winner"
   end
 
   create_table "leagues", force: :cascade do |t|

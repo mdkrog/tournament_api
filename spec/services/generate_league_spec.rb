@@ -33,7 +33,7 @@ RSpec.describe GenerateLeague, type: :service do
       end
     end
       
-    it "if a league already exists it must just re-create brand new groups for it" do
+    it "if a league already exists it must just re-create new groups for it" do
       tournament = generate_tournament(number_of_participants: 1)
       mocked_lps = mocked_ladder_positions(number_of_ladder_positions: 6)
       group_assignment_strategy = double('group_assignment_strategy', assign: mocked_lps)

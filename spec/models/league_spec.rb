@@ -7,8 +7,7 @@ RSpec.describe League, type: :model do
     it { is_expected.to respond_to(:number_of_groups) }
 
     it "destroys groups on delete" do
-      tournament = create(:tournament, format: 1)
-      league = create(:league, tournament: tournament)
+      league = create(:league)
       group = create(:group, league: league)
 
       league.destroy
