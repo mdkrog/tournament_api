@@ -25,4 +25,26 @@ RSpec.describe Group, type: :model do
       expect(LeagueMatch.count).to eq(0)
     end
   end
+
+  describe "#get_ladder" do
+    it "returns the ladder in order of points" do
+      group = create(:group)
+      p1 = create(:participant, name: "Red Team")
+      p2 = create(:participant, name: "Blue Team")
+      p3 = create(:participant, name: "Green Team")
+
+      group.participants = [p1,p2,p3]
+
+      create(:league_match, group: group, participant1: p1, participant2: p2, winner: 1)
+      create(:league_match, group: group, participant1: p2, participant2: p3, winner: 2)
+      create(:league_match, group: group, participant1: p1, participant2: p3, winner: 2)
+
+      ladder = group.get_ladder
+
+      expect(ladder.first.points).to eq(6)
+      expect(ladder.first.participant.name).to eq("Green Team")
+      expect(ladder.last.points).to eq(0)
+      expect(ladder.last.participant.name).to eq("Blue Team")
+    end
+  end
 end

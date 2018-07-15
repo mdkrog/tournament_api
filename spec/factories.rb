@@ -20,6 +20,9 @@ FactoryBot.define do
     league
   end
 
+  factory :ladder_position do
+  end
+
   factory :league_match do
     group
     association :participant1, factory: :participant
