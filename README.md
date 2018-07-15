@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Ruby API is used for generating and managing sports tournaments.
+All functionality is made available through the GraphQL API. 
 
-Things you may want to cover:
+### To Do
 
-* Ruby version
+- [x] Able to create Tournaments with Leagues, Groups and Participants
+- [x] Generate Fixtures for all Groups in a League
+- [x] Recalculate points in Ladder when result is updated
+- [ ] Settings for a league (points per win/draw/loss etc)
+- [ ] Expose functionality in GraphQL API
+- [ ] Knockout tournament
 
-* System dependencies
+### How to use the API
+A few examples of making calls to the API.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
