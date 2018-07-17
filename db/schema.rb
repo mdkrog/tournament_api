@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_12_151534) do
+ActiveRecord::Schema.define(version: 2018_07_17_161054) do
 
   create_table "groups", force: :cascade do |t|
     t.integer "league_id"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2018_07_12_151534) do
   end
 
   create_table "ladder_positions", force: :cascade do |t|
-    t.integer "position", default: 0
     t.integer "points", default: 0
     t.integer "group_id"
     t.integer "participant_id"
@@ -59,8 +58,8 @@ ActiveRecord::Schema.define(version: 2018_07_12_151534) do
     t.index ["name"], name: "index_participants_on_name"
   end
 
-  create_table "tournament_participants", force: :cascade do |t|
-    t.integer "seeding", default: 0
+  create_table "tournament_participants", id: false, force: :cascade do |t|
+    t.integer "seeding"
     t.integer "tournament_id"
     t.integer "participant_id"
     t.datetime "created_at", null: false
