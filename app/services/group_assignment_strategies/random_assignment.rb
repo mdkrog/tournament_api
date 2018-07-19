@@ -14,19 +14,15 @@ module GroupAssignmentStrategies
     private
 
     def random_assignment
-      current_group_index = -1
       ladder_positions = []
+      cycle_group_enum = group_id_list.cycle
             
       while(participant_id_list.length > 0)
-        current_group_index = next_group_index(current_group_index)
+        group_id = cycle_group_enum.next
         pid = participant_id_list.delete participant_id_list.sample
-        ladder_positions << LadderPosition.new(participant_id: pid, group_id: group_id_list[current_group_index])
+        ladder_positions << LadderPosition.new(participant_id: pid, group_id: group_id)
       end
       return ladder_positions
-    end
-  
-    def next_group_index(current_index)
-      current_index >= (group_id_list.length-1) ? 0 : next_group_index = current_index + 1
     end
   end
 end

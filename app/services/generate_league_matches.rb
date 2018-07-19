@@ -4,29 +4,13 @@ class GenerateLeagueMatches
     @current_round = 1
     participants = group.participants.pluck(:id)
     all_matches = []
-    reverse = false
 
     (1..times_face_same_participant).each do |i|
-      match_ids = pair_participant_ids_into_matches(participants, reverse)
+      match_ids = participants.combination(2).to_a
+      participants.reverse!      
       all_matches += randomly_group_matches_in_rounds(match_ids, participants.length, group)
-      reverse = !reverse
     end
     all_matches
-  end
-
-  def pair_participant_ids_into_matches(participants, reverse)
-    match_ids = []
-    participants_copy = participants.map(&:clone)      
-    participants.each do |p|
-      participants_copy.each do |q|
-        if(q!=p)            
-          match = reverse ? [q,p] : [p,q]
-          match_ids << match
-        end
-      end
-      participants_copy.reject! { |i| i == p }        
-    end
-    return match_ids
   end
 
   def randomly_group_matches_in_rounds(match_array, number_of_participants, group)
