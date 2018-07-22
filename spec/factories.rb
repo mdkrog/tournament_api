@@ -14,6 +14,7 @@ FactoryBot.define do
   factory :league do
     number_of_groups 1
     tournament
+    league_settings({win_points: 3, lose_points: 0, draw_points: 1})
   end
 
   factory :group do

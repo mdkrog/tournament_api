@@ -5,6 +5,7 @@ RSpec.describe League, type: :model do
     it { is_expected.to belong_to(:tournament) }
     it { is_expected.to have_many(:groups) }
     it { is_expected.to respond_to(:number_of_groups) }
+    it { is_expected.to respond_to(:league_settings) }
 
     it "destroys groups on delete" do
       league = create(:league)

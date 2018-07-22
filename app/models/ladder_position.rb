@@ -6,10 +6,9 @@ class LadderPosition < ApplicationRecord
 
   def self.recalculate_ladder_points(group, participant)
     matches = participant.all_matches.where(group: group)
-    points = 0
-    matches.each do |m|
-      points += 3 if participant == m.winning_participant
-      points += 1 if m.winning_participant == :draw
+    points = matches.sum do |m|
+      resolver = MatchResolver::GenericMatch.new(match: m)
+      resolver.league_points_for(participant_id: participant.id, league: group.league)   
     end
     LadderPosition.where(group: group, participant: participant).first.update(points: points)
   end

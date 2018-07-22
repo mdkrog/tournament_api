@@ -35,9 +35,9 @@ RSpec.describe Group, type: :model do
 
       group.participants = [p1,p2,p3]
 
-      create(:league_match, group: group, participant1: p1, participant2: p2, winner: 1)
-      create(:league_match, group: group, participant1: p2, participant2: p3, winner: 2)
-      create(:league_match, group: group, participant1: p1, participant2: p3, winner: 2)
+      create(:league_match, group: group, participant1: p1, participant2: p2, score: {points: [2,1]})
+      create(:league_match, group: group, participant1: p2, participant2: p3, score: {points: [0,1]})
+      create(:league_match, group: group, participant1: p1, participant2: p3, score: {points: [0,1]})
 
       ladder = group.get_ladder
 

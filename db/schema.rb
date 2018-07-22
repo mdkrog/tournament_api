@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_17_161054) do
+ActiveRecord::Schema.define(version: 2018_07_17_162128) do
 
   create_table "groups", force: :cascade do |t|
     t.integer "league_id"
@@ -30,17 +30,16 @@ ActiveRecord::Schema.define(version: 2018_07_17_161054) do
   end
 
   create_table "league_matches", force: :cascade do |t|
-    t.integer "winner"
     t.integer "round"
     t.integer "group_id"
     t.integer "participant1_id"
     t.integer "participant2_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "score"
     t.index ["group_id"], name: "index_league_matches_on_group_id"
     t.index ["participant1_id"], name: "index_league_matches_on_participant1_id"
     t.index ["participant2_id"], name: "index_league_matches_on_participant2_id"
-    t.index ["winner"], name: "index_league_matches_on_winner"
   end
 
   create_table "leagues", force: :cascade do |t|
@@ -48,6 +47,7 @@ ActiveRecord::Schema.define(version: 2018_07_17_161054) do
     t.integer "tournament_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "league_settings"
     t.index ["tournament_id"], name: "index_leagues_on_tournament_id"
   end
 
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 2018_07_17_161054) do
     t.index ["name"], name: "index_participants_on_name"
   end
 
-  create_table "tournament_participants", id: false, force: :cascade do |t|
-    t.integer "seeding"
+  create_table "tournament_participants", force: :cascade do |t|
+    t.integer "seeding", default: 0
     t.integer "tournament_id"
     t.integer "participant_id"
     t.datetime "created_at", null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2018_07_17_161054) do
     t.integer "format", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "discipline", default: 0
   end
 
 end
