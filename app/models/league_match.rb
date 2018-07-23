@@ -4,6 +4,6 @@ class LeagueMatch < ApplicationRecord
   belongs_to :group
 
   def winner
-    MatchResolver::GenericMatch.new(self).winner
+    MatchResolver::GenericMatch.new(match: self).winner
   end
 end

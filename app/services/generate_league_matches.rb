@@ -1,5 +1,4 @@
-class GenerateLeagueMatches
-  
+class GenerateLeagueMatches  
   def generate(group:, times_face_same_participant: 1)
     @current_round = 1
     participants = group.participants.pluck(:id)
