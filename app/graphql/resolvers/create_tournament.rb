@@ -13,6 +13,7 @@ class Resolvers::CreateTournament < GraphQL::Function
     Tournament.create!(
       name: args[:name],
       format: args[:format],
+      discipline: args[:discipline],
     )
   end
 end

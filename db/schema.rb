@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 2018_07_17_162128) do
     t.index ["name"], name: "index_participants_on_name"
   end
 
-  create_table "tournament_participants", force: :cascade do |t|
-    t.integer "seeding", default: 0
+  create_table "tournament_participants", id: false, force: :cascade do |t|
+    t.integer "seeding"
     t.integer "tournament_id"
     t.integer "participant_id"
     t.datetime "created_at", null: false
